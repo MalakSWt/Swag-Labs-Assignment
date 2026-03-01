@@ -29,4 +29,25 @@ public class InventoryPage {
         List<WebElement> items = driver.findElements(inventoryitem);
         return items.size();
     }
+    public void openCartPage(){
+        driver.findElement(carticon).click();
+    }
+    public void addProductToCart(String productName) {
+
+        String dynamicXpath =
+                "//div[text()='" + productName + "']" +
+                        "/ancestor::div[@class='inventory_item']" +
+                        "//button";
+
+        driver.findElement(By.xpath(dynamicXpath)).click();
+    }
+    public String getProductButtonText(String productName) {
+
+        By button = By.xpath(
+                String.format(
+                        "//div[text()='%s']/ancestor::div[@class='inventory_item']//button",
+                        productName));
+
+        return driver.findElement(button).getText();
+    }
 }

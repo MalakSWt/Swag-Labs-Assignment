@@ -7,6 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.CartPage;
 import pages.InventoryPage;
 import pages.LoginPage;
 
@@ -14,13 +15,15 @@ public class BaseTest {
    protected WebDriver driver;
    protected LoginPage loginPage;
    protected InventoryPage inventoryPage;
+   protected CartPage cartPage;
     @BeforeMethod
     public void setUp(){
-        driver = new ChromeDriver();
+        driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
         inventoryPage = new InventoryPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @AfterMethod
